@@ -1,7 +1,4 @@
 import requests
-from fastapi import FastAPI
-import uvicorn
-from app.routers.questions import router as question_router
 
 BASE_URL = "http://localhost:8000"
 
