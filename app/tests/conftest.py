@@ -1,12 +1,14 @@
-from sqlalchemy import create_engine
+import sqlalchemy
 from sqlalchemy.orm import sessionmaker, Session
-from app.db.database import Base, get_db
+
 from main import app
+from app.db.database import Base
+from app.routers.questions import get_db
 from app.db.models import Question
 
 SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
 
-engine = create_engine(
+engine = sqlalchemy.create_engine(
     SQLALCHEMY_DATABASE_URL,
     connect_args={"check_same_thread": False},
     # poolclass=StaticPool,
@@ -35,3 +37,4 @@ def init_db(db: Session):
 
 
 app.dependency_overrides[get_db] = override_get_db
+init_db(TestingSessionLocal())
