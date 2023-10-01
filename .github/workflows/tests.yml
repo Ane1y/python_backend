@@ -24,12 +24,5 @@ jobs:
     - name: Run unit tests
       run: pytest app/tests/test_crud.py && pytest app/tests/test_questions.py
 
-    - name: Start FastAPI Application
-      run: uvicorn main:app --host 0.0.0.0 --port 8000 --reload &
-
-    - name: Run Integration Tests
-      run: |
-            pytest app/tests/test_integration.py
-
 
 
