@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from task_manager.src.db.models import Question
-from task_manager.src.db.schemas import QuestionCreate
+from app.db.models import Question
+from app.db.schemas import QuestionCreate
 
 
 def get_questions(skip, limit, db: Session):

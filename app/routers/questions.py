@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from task_manager.src.db import crud
-from task_manager.src.db.database import get_db
-from task_manager.src.db.schemas import QuestionCreate, QuestionDb, AnswerCreate
+from app.db import crud
+from app.db.database import get_db
+from app.db.schemas import QuestionCreate, QuestionDb, AnswerCreate
 
 router = APIRouter()
 
@@ -34,10 +34,10 @@ def create_question(question: QuestionCreate, db: Session = Depends(get_db)):
     - question (QuestionCreate): The data for the new question.
     - db (Session): Database session
     Returns:
-    - Question: The created question with its unique identifier.
+    - Question: The created question
     """
-    db_question = crud.create_question(question, db)
-    return db_question
+    q = crud.create_question(question, db)
+    return QuestionDb(text=q.text, id=q.id, answer=q.answer)
 
 
 # Get answers to a specific question by question_id
@@ -84,5 +84,5 @@ def add_answer_to_question(
         raise HTTPException(status_code=404, detail="Question not found")
 
     question.answer = answer_data.text
-
+    db.commit()
     return question

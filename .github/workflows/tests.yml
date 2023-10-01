@@ -1,0 +1,30 @@
+name: Run Tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.11
+
+    - name: Install dependencies
+      run: pip install -r app/requirements.txt
+
+    - name: Run unit tests
+      run: pytest app/tests/test_crud.py && pytest app/tests/test_questions.py
+
+    - name: Run integration tests
+      run: pytest app/tests/test_integration.py
+
+

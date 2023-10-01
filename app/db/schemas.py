@@ -15,11 +15,10 @@ class QuestionDb(QuestionBase):
     """
     Model to read question from database
     """
-    answer: str
+    id: int
+    answer: str | None
     class Config:
         orm_mode = True
-
-
 
 class AnswerCreate(BaseModel) :
     text: str
