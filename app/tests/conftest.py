@@ -14,6 +14,7 @@ engine = create_engine(
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base.metadata.create_all(bind=engine)
 
+
 def override_get_db():
     try:
         db = TestingSessionLocal()
@@ -23,7 +24,6 @@ def override_get_db():
 
 
 def init_db(db: Session):
-
     question1 = Question(text="What is the capital of France?")
     db.add(question1)
 
@@ -35,4 +35,3 @@ def init_db(db: Session):
 
 
 app.dependency_overrides[get_db] = override_get_db
-

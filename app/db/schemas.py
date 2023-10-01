@@ -4,10 +4,12 @@ from pydantic import BaseModel
 class QuestionBase(BaseModel):
     text: str
 
+
 class QuestionCreate(QuestionBase):
     """
     Model to create new question in database
     """
+
     pass
 
 
@@ -15,10 +17,13 @@ class QuestionDb(QuestionBase):
     """
     Model to read question from database
     """
+
     id: int
     answer: str | None
+
     class Config:
         orm_mode = True
 
-class AnswerCreate(BaseModel) :
+
+class AnswerCreate(BaseModel):
     text: str

@@ -60,12 +60,11 @@ def get_question_answers(question_id: int, db: Session = Depends(get_db)):
 
     return question.answer
 
+
 # Create an answer to a specific question by question_id
 @router.post("/questions/{question_id}/answer/", response_model=QuestionDb)
 def add_answer_to_question(
-    question_id: int,
-    answer_data: AnswerCreate,
-    db: Session = Depends(get_db)
+    question_id: int, answer_data: AnswerCreate, db: Session = Depends(get_db)
 ):
     """
     Add an answer to a specific question.
