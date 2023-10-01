@@ -24,7 +24,15 @@ jobs:
     - name: Run unit tests
       run: pytest app/tests/test_crud.py && pytest app/tests/test_questions.py
 
-    - name: Run integration tests
-      run: pytest app/tests/test_integration.py
+    - name: Start FastAPI Application
+      run: uvicorn main:app --host 0.0.0.0 --port 8000 --reload &
+
+    - name: Wait for the application to start
+      run: sleep 10  # Adjust the sleep duration as needed
+
+    - name: Run Integration Tests
+      run: |
+            pytest tests/test_integration.py
+
 
 
