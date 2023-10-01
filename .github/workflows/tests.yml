@@ -16,10 +16,10 @@ jobs:
         python-version: 3.11
 
     - name: Install dependencies
-      run: flake
-
-    - name: Install dependencies
       run: pip install -r requirements.txt
+
+    - name: Run linter
+      run: flake8
 
     - name: Run unit tests
       run: pytest app/tests/test_crud.py && pytest app/tests/test_questions.py
