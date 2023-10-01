@@ -7,7 +7,7 @@ from app.tests.conftest import TestingSessionLocal
 db = TestingSessionLocal()
 
 
-## Tests for create questions
+# Tests for create questions
 def test_create_question():
     question_data = "Test data"
     question = QuestionCreate(text=question_data)
@@ -19,19 +19,19 @@ def test_create_question():
 def test_create_question_invalid_data():
     question_data = Question()  # Invalid data with missing 'text' field
     try:
-        db_question = crud.create_question(question_data, db)
+        crud.create_question(question_data, db)
         assert False, "Creating question with invalid data should raise an exception"
     except Exception:
         pass
 
 
-## Tests for get questions
+# nTests for get questions
 def test_get_questions():
     questions = crud.get_questions(0, 10, db)
     assert len(questions) >= 0
 
 
-## Tests for get question by id
+# Tests for get question by id
 def test_get_question_answers_invalid_id():
     question = crud.get_question(999, db)  # Non-existent ID
     assert question is None

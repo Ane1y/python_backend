@@ -18,7 +18,6 @@ def test_create_question():
 
 
 def test_create_invalid_question():
-    test_question = "Test question"
     response = client.post("/questions/")
     assert response.status_code == 422  # Validation error
 
@@ -44,11 +43,11 @@ def test_get_invalid_answer_idx():
     assert response.status_code == 404
 
 
-### Tests on create answer
+# Tests on create answer
 def test_create_answer_to_question():
     question_id = 1
     answer_data = "Test answer"
-    answer = AnswerCreate(text=answer_data)
+    AnswerCreate(text=answer_data)
     response = client.post(
         f"/questions/{question_id}/answer/", json={"text": answer_data}
     )

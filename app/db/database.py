@@ -1,6 +1,4 @@
-from fastapi import Depends
-from pydantic import BaseModel
-from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session, declarative_base
 
 DATABASE_URL = "sqlite:///./src/db/questions.db"
