@@ -1,0 +1,35 @@
+name: Run Tests
+
+on: pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.11
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Run linter
+      run: flake8
+
+    - name: Run unit tests
+      run: pytest app/tests/test_crud.py && pytest app/tests/test_questions.py
+
+    - name: Start FastAPI Application
+      run: uvicorn main:app --host 0.0.0.0 --port 8000 --reload &
+
+    - name: Run Integration Tests
+      run: |
+            pytest app/tests/test_integration.py
+
+
+
