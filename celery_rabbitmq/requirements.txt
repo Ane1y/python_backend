@@ -1,0 +1,5 @@
+fastapi==0.104.0
+unicorn==2.0.1
+celery==5.3.4
+flower==2.0.1
+httpx==1.0.0b0
